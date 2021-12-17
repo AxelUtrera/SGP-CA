@@ -1,0 +1,90 @@
+Strategy
+
+@Override
+    public boolean equals(Object object) {
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(object.getClass() != Strategy.class){
+            return false;
+        }
+
+        Strategy strategy = (Strategy) object;
+
+        if(strategy.getIdStrategy().equals(this.idStrategy) &&
+            strategy.getAction().equals(this.action) &&
+            strategy.getDescription().equals(this.description) &&
+            strategy.getGoal().equals(this.goal) &&
+            strategy.getNumber() == this.number &&
+            strategy.getResult().equals(this.result) &&
+            strategy.getIdTarget().equals(this.idTarget)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+------------------------------------------------------
+
+WorkPlan
+
+
+ @Override
+    public boolean equals(Object object) {
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(object.getClass() != WorkPlan.class){
+            return false;
+        }
+
+        WorkPlan workPlan = (WorkPlan) object;
+
+        if(workPlan.getKeyWorkPlan().equals(this.keyWorkPlan) &&
+            workPlan.getStartDate().equals(this.startDate) &&
+            workPlan.getEndDate().equals(this.endDate) &&
+            workPlan.getKeyAcademicGroup().equals(this.keyAcademicGroup) &&
+            workPlan.getCurpMember().equals(this.curpMember)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+-----------------------------------------------------
+
+Target
+
+@Override
+    public boolean equals(Object object) {
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(object.getClass() != Target.class){
+            return false;
+        }
+
+        Target target = (Target) object;
+
+        if(target.getIdTarget().equals(this.idTarget) &&
+            target.getDescription().equals(this.description) &&
+            target.getTitle().equals(this.title) &&
+            target.getStatus().equals(this.status) &&
+            target.getKeyWorkplan().equals(this.keyWorkplan)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+

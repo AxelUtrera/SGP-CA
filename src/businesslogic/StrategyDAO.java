@@ -2,30 +2,28 @@ package businesslogic;
 
 import dataaccess.Connector;
 import domain.Strategy;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class StrategyDAO implements IStrategyDAO{
 
-    private Connector connector = new Connector();
+    private final Connector CONNECTOR = new Connector();
 
-    public List<Strategy> displayAllStrategies(){
+    public List<Strategy> displayAllStrategies() throws BusinessLogicException{
 
-        String SQL_SELECT = "SELECT * FROM strategy";
+        final String SQL_SELECT = "SELECT * FROM strategy";
         Connection connection = null;
         Strategy strategy;
         List<Strategy> strategyList = new ArrayList<>();
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
             ResultSet resultSet = statement.executeQuery();
 
@@ -36,114 +34,196 @@ public class StrategyDAO implements IStrategyDAO{
                 String goal = resultSet.getString("goal");
                 int number = resultSet.getInt("number");
                 String result = resultSet.getString("result");
+                String idTarget = resultSet.getString("idTarget");
 
-                strategy = new Strategy(idStrategy, action, description, goal, number, result);
+                strategy = new Strategy(idStrategy, action, description, goal, number, result, idTarget);
                 strategyList.add(strategy);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
         return strategyList;
     }
 
-    public int addStrategy(Strategy strategy){
+    public boolean addStrategy(Strategy strategy) throws BusinessLogicException{
 
-        String SQL_INSERT = "INSERT INTO strategy (`idStrategy`, `action`, `description`, `goal`, `number`, `result`) VALUES (?, ?, ?, ?, ?, ?)";
+        final String SQL_INSERT = "INSERT INTO strategy (`idStrategy`, `action`, `description`, `goal`," +
+                " `number`, `result`, `idTarget`) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection connection = null;
-        int numberOfRegisters =0;
+        boolean operationResult = false;
+
+        String idStrategy = "STR-"+ getLastIdStrategyNumber();
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_INSERT);
-            statement.setString(1, strategy.getIdStrategy());
+            statement.setString(1, idStrategy);
             statement.setString(2, strategy.getAction());
             statement.setString(3, strategy.getDescription());
             statement.setString(4, strategy.getGoal());
-            statement.setInt(5, strategy.getStrategyNumber());
+            statement.setInt(5, strategy.getNumber());
             statement.setString(6, strategy.getResult());
-            numberOfRegisters = statement.executeUpdate();
+            statement.setString(7, strategy.getIdTarget());
+            statement.executeUpdate();
+            operationResult = true;
 
-        } catch (SQLException ex) {
-            Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return numberOfRegisters;
+        return operationResult;
     }
 
-    public int deleteOneStrategy(String idStrategy){
+    public int getLastIdStrategyNumber() throws BusinessLogicException{
 
-        String SQL_DELETE = "DELETE FROM strategy WHERE idStrategy=?";
+        final String SQL_SELECT = "SELECT convert(substring(idStrategy, 5), UNSIGNED INTEGER)" +
+                " AS idStrategy FROM strategy ORDER BY idStrategy DESC limit 1";
         Connection connection = null;
-        int numberOfRegisters=0;
+        int lastIdStrategyNumber=1;
 
         try {
 
-            connection = connector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SQL_DELETE);
-            statement.setString(1, idStrategy);
-            numberOfRegisters = statement.executeUpdate();
+            connection = CONNECTOR.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
+            ResultSet resultSet = statement.executeQuery();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+            if(resultSet.next()){
+                lastIdStrategyNumber = resultSet.getInt("idStrategy");
+                lastIdStrategyNumber++;
+            }
+
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
+        } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return numberOfRegisters;
+        return lastIdStrategyNumber;
     }
 
-    public Strategy foundStrategyById(String idStrategy){
+    public boolean deleteStrategy(String idStrategy) throws BusinessLogicException{
 
-        String SQL_FOUNDSTRATEGYBYID = "SELECT * FROM strategy WHERE idStrategy = ?";
+        final String SQL_DELETE = "DELETE FROM strategy WHERE idStrategy=?";
+        Connection connection = null;
+        int numberOfStrategiesDeleted;
+        boolean operationResult = false;
+        final int OPERATION_OK = 0;
+
+        try {
+
+            connection = CONNECTOR.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_DELETE);
+            statement.setString(1, idStrategy);
+            numberOfStrategiesDeleted = statement.executeUpdate();
+
+            if(numberOfStrategiesDeleted>OPERATION_OK){
+                operationResult = true;
+            }
+
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
+        }finally {
+            try {
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
+            }
+        }
+
+        return operationResult;
+    }
+
+    public Strategy foundStrategyByIdStrategy(String idStrategy) throws BusinessLogicException{
+
+        final String SQL_SELECT = "SELECT * FROM strategy WHERE idStrategy = ?";
         Connection connection = null;
         Strategy strategy = null;
 
         try {
 
-            connection = connector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SQL_FOUNDSTRATEGYBYID);
+            connection = CONNECTOR.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
             statement.setString(1, idStrategy);
             ResultSet resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                String action = resultSet.getString("action");
+                String description = resultSet.getString("description");
+                String goal = resultSet.getString("goal");
+                int number = resultSet.getInt("number");
+                String result = resultSet.getString("result");
+                String idTarget = resultSet.getString("idTarget");
+
+                strategy = new Strategy(idStrategy, action, description, goal, number, result, idTarget);
+            }
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
+        } finally {
+            try {
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
+            }
+        }
+
+        return strategy;
+    }
+
+    public List<Strategy> foundStrategiesByIdTarget(String idTarget) throws BusinessLogicException{
+
+        final String SQL_SELECT = "SELECT * FROM strategy WHERE idTarget = ?";
+        Connection connection = null;
+        Strategy strategy;
+        List<Strategy> strategyList = new ArrayList<>();
+
+        try {
+
+            connection = CONNECTOR.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
+            statement.setString(1, idTarget);
+            ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
-                String idStrategyResult = resultSet.getString("idStrategy");
+                String idStrategy = resultSet.getString("idStrategy");
                 String action = resultSet.getString("action");
                 String description = resultSet.getString("description");
                 String goal = resultSet.getString("goal");
                 int number = resultSet.getInt("number");
                 String result = resultSet.getString("result");
 
-                strategy = new Strategy(idStrategyResult, action, description, goal, number, result);
+                strategy = new Strategy(idStrategy, action, description, goal, number, result, idTarget);
+                strategyList.add(strategy);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(StrategyDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return strategy;
+        return strategyList;
     }
+
 
 }

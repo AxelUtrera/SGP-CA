@@ -1,17 +1,16 @@
 package businesslogic;
 
-import domain.Strategy;
 import domain.Target;
-
 import java.util.List;
 
 public interface ITargetDAO {
 
-    public List<Target> displayAllTargets();
-    public int addTarget(Target target);
-    public int updateOneTarget(Target target);
-    public int deleteOneTarget(String idTarget);
-    public List<Strategy> displayAllTargetStrategies(String idTarget);
-    public Target foundTargetById(String idTarget);
+    public boolean addTarget(Target target) throws BusinessLogicException;
+    public int getLastIdTargetNumber() throws BusinessLogicException;
+    public boolean updateTarget(Target target) throws BusinessLogicException;
+    public Target foundTargetByIdTarget(String idTarget) throws BusinessLogicException;
+    public List<Target> foundTargetsByKeyWorkplan(String keyWorkplan) throws BusinessLogicException;
+    public List<Target> foundPendingTargetsByKeyWorkplan(String keyWorkplan) throws BusinessLogicException;
+    public List<Target> foundAchievedTargetsByKeyWorkplan(String keyWorkplan) throws BusinessLogicException;
 
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLNewDiaryController">
+    <children>
+        <AnchorPane layoutX="-2.0" prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Pane layoutX="-15.0" layoutY="-6.0" prefHeight="407.0" prefWidth="620.0">
+                    <children>
+                        <Pane layoutX="16.0" layoutY="2.0" prefHeight="60.0" prefWidth="605.0" style="-fx-background-color: #4CAF50;">
+                            <children>
+                                <Label layoutX="26.0" layoutY="5.0" prefHeight="50.0" prefWidth="194.0" text="Nueva agenda:" textFill="WHITE">
+                                    <font>
+                                        <Font size="27.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Label layoutX="136.0" layoutY="98.0" prefHeight="35.0" prefWidth="69.0" text="Numero:.">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font></Label>
+                        <JFXTextField fx:id="textFieldNumber" editable="false" focusColor="#4caf50" focusTraversable="false" layoutX="206.0" layoutY="89.0" prefHeight="31.0" prefWidth="69.0" unFocusColor="#3e60b6">
+                            <cursor>
+                                <Cursor fx:constant="NONE" />
+                            </cursor></JFXTextField>
+                        <Label layoutX="78.0" layoutY="142.0" prefHeight="35.0" prefWidth="126.0" text="Tiempo estimado:">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font></Label>
+                        <Label layoutX="110.0" layoutY="190.0" prefHeight="35.0" prefWidth="96.0" text="Tiempo real:">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font></Label>
+                        <Label layoutX="92.0" layoutY="305.0" prefHeight="35.0" prefWidth="96.0" text="Punto a tratar:">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font></Label>
+                        <JFXTextArea fx:id="textAreaPointDiscussed" focusColor="#4caf50" layoutX="203.0" layoutY="291.0" prefHeight="43.0" prefWidth="339.0" promptText="Descripcion del punto" unFocusColor="#3e60b6" wrapText="true">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor></JFXTextArea>
+                        <JFXButton buttonType="RAISED" defaultButton="true" layoutX="431.0" layoutY="353.0" onMouseClicked="#clickAccept" ripplerFill="#4caf50" style="-fx-background-color: #3e60b6;" text="Aceptar" textFill="WHITE">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" defaultButton="true" layoutX="525.0" layoutY="353.0" onMouseClicked="#exit" ripplerFill="#e82323" style="-fx-background-color: #3e60b6;" text="Cancelar" textFill="WHITE">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </JFXButton>
+                        <Label layoutX="73.0" layoutY="247.0" prefHeight="35.0" prefWidth="126.0" text="Lider de discusión:">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font></Label>
+                        <JFXTextField fx:id="textFieldDiscussionLeader" focusColor="#4caf50" layoutX="206.0" layoutY="237.0" prefHeight="31.0" prefWidth="322.0" promptText="Nombre de líder" unFocusColor="#3e60b6">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </JFXTextField>
+                        <JFXTextField fx:id="textFieldEstimatedTime" focusColor="#4caf50" layoutX="206.0" layoutY="133.0" prefHeight="31.0" prefWidth="266.0" promptText="minutos" unFocusColor="#3e60b6">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </JFXTextField>
+                        <JFXTextField fx:id="textFieldRealTime" focusColor="#4caf50" layoutX="206.0" layoutY="183.0" prefHeight="31.0" prefWidth="266.0" promptText="minutos" unFocusColor="#3e60b6">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </JFXTextField>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

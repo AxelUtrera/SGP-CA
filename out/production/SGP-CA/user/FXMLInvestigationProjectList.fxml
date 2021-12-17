@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneMain" prefHeight="431.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLInvestigationProjectListController">
+    <children>
+        <Pane layoutX="-1.0" prefHeight="78.0" prefWidth="636.0" style="-fx-background-color: #4CAF50;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="5.0" layoutY="7.0" text="Proyectos de investigación" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <JFXButton fx:id="buttonRegister" buttonType="RAISED" layoutX="433.0" layoutY="40.0" onAction="#newRegister" prefHeight="25.0" prefWidth="251.0" style="-fx-background-color: #3E60B6;" text="Registrar nuevo proyecto de investigación" textFill="WHITE" />
+            <Label fx:id="labelMemberInformation" layoutX="337.0" layoutY="10.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="294.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/LogoUser.png" />
+               </image>
+            </ImageView>
+            </children>
+        </Pane>
+        <Pane layoutX="3.0" layoutY="81.0" prefHeight="336.0" prefWidth="696.0" style="-fx-background-color: #dfffe3;">
+            <children>
+                <JFXButton fx:id="buttonRemove" buttonType="RAISED" layoutX="576.0" layoutY="27.0" onAction="#clickedRemoveProject" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E60B6;" text="Eliminar" textFill="WHITE" />
+                <JFXButton fx:id="buttonExit" buttonType="RAISED" layoutX="10.0" layoutY="303.0" onAction="#clickedExit" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Salir" textFill="WHITE" />
+                <TableView fx:id="tableViewProjects" layoutX="10.0" layoutY="14.0" prefHeight="279.0" prefWidth="517.0" stylesheets="@StyleTableView.css">
+                    <columns>
+                        <TableColumn fx:id="tableColumnName" prefWidth="516.0" text="Titulo" />
+                    </columns>
+                </TableView>
+                <JFXButton fx:id="buttonConsultar" buttonType="RAISED" layoutX="576.0" layoutY="107.0" onAction="#consultarProject" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E60B6;" text="Consultar" textFill="WHITE" />
+                <JFXButton fx:id="buttonEdit" buttonType="RAISED" layoutX="576.0" layoutY="67.0" onAction="#editProject" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E60B6;" text="Editar" textFill="WHITE" />
+                <JFXButton fx:id="buttonUpdate" buttonType="RAISED" layoutX="576.0" layoutY="147.0" onAction="#updateList" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E60B6;" text="Actualizar" textFill="WHITE" />
+                <JFXButton fx:id="buttonPreliminaryProjectList" buttonType="RAISED" layoutX="576.0" layoutY="187.0" onAction="#clickedPreliminaryProjects" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E60B6;" text="Anteproyectos" textFill="WHITE" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

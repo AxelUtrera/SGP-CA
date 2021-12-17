@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneNewTarget" prefHeight="550.0" prefWidth="720.0" style="-fx-background-color: #ebebeb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTargetController">
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #4caf50;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+         <children>
+            <Label fx:id="labelTargetActivity" layoutX="14.0" layoutY="9.0" text="Nuevo objetivo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelKeyWorkPlan" layoutX="569.0" layoutY="11.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="22.0" layoutY="77.0" text="Título del objetivo:" AnchorPane.leftAnchor="18.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <JFXTextField fx:id="textFieldTargetTitle" focusColor="#183572" layoutX="183.0" layoutY="74.0" prefHeight="25.0" prefWidth="435.0" />
+      <Label layoutX="18.0" layoutY="143.0" text="Descripción del objetivo:" AnchorPane.leftAnchor="18.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXTextArea fx:id="textAreaTargetDescription" focusColor="#183572" layoutX="183.0" layoutY="122.0" prefHeight="40.0" prefWidth="435.0" />
+      <TableView fx:id="tableViewTargetStrategies" layoutX="20.0" layoutY="209.0" prefHeight="200.0" prefWidth="625.0" stylesheets="@StyleTableView.css">
+        <columns>
+          <TableColumn fx:id="tableColumnStrategyNumber" prefWidth="55.0" text="Número" />
+          <TableColumn fx:id="tableColumnStrategyDescription" prefWidth="148.0" text="Estrategia" />
+            <TableColumn fx:id="tableColumnStrategyGoal" minWidth="0.0" prefWidth="138.0" text="Meta" />
+            <TableColumn fx:id="tableColumnStrategyAction" prefWidth="138.0" text="Acción" />
+            <TableColumn fx:id="tableColumnStrategyResult" prefWidth="145.0" text="Resultado" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="buttonSaveNewTarget" buttonType="RAISED" layoutX="460.0" layoutY="505.0" onAction="#clickedSaveNewTarget" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #3b3737;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="buttonCancelNewTarget" buttonType="RAISED" layoutX="580.0" layoutY="505.0" onAction="#clickedCancelNewTarget" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #3b3737;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="580.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="buttonAddStrategy" buttonType="RAISED" layoutX="15.0" layoutY="482.0" onAction="#clickedAddStrategy" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #3b3737;" text="Agregar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="20.0" layoutY="187.0" text="Estrategias">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="buttonRemoveStrategy" buttonType="RAISED" layoutX="657.0" layoutY="242.0" onAction="#removeTargetStrategy" prefHeight="25.0" prefWidth="36.0" style="-fx-background-color: #3b3737;" text="X" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXCheckBox fx:id="checkBoxAchievedTarget" disable="true" layoutX="627.0" layoutY="55.0" text="Cumplido">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXCheckBox>
+      <AnchorPane layoutX="135.0" layoutY="207.0" prefHeight="200.0" prefWidth="388.0" style="-fx-background-color: WHITE;" visible="false" />
+      <JFXTextArea fx:id="textAreaStrategyDescription" focusColor="#183572" layoutX="76.0" layoutY="409.0" prefHeight="44.0" prefWidth="148.0" style="-fx-background-color: WHITE;" AnchorPane.topAnchor="409.0" />
+      <JFXTextArea fx:id="textAreaStrategyGoal" focusColor="#183572" layoutX="224.0" layoutY="409.0" prefHeight="44.0" prefWidth="138.0" style="-fx-background-color: #EBEEF2;" />
+      <JFXTextArea fx:id="textAreaStrategyAction" focusColor="#183572" layoutX="360.0" layoutY="409.0" prefHeight="44.0" prefWidth="138.0" style="-fx-background-color: WHITE;" />
+      <JFXTextArea fx:id="textAreaStrategyResult" focusColor="#183572" layoutX="498.0" layoutY="409.0" prefHeight="44.0" prefWidth="145.0" style="-fx-background-color: #EBEEF2;" />
+      <JFXTextArea editable="false" focusColor="#4d4d4d" layoutX="21.0" layoutY="409.0" prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #EBEEF2;" />
+      <JFXButton fx:id="buttonUpdateTarget" buttonType="RAISED" layoutX="460.0" layoutY="505.0" onAction="#clickedUpdateTarget" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #3b3737;" text="Actualizar" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="anchorPaneConsultTarget" layoutY="343.0" prefHeight="141.0" prefWidth="720.0" style="-fx-background-color: #ebebeb;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="409.0">
+         <children>
+            <JFXButton fx:id="buttonCloseConsultTarget" buttonType="RAISED" layoutX="587.0" layoutY="82.0" onAction="#closeConsultTarget" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #3b3737;" text="Cerrar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

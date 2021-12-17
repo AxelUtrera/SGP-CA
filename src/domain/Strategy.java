@@ -8,16 +8,40 @@ public class Strategy{
     private String goal;
     private int number;
     private String result;
-    private static int strategyNumber=0;
+    private String idTarget;
 
-    public Strategy(String idStrategy, String action, String description, String goal, int number, String result) {
+    public Strategy(String idStrategy, String action, String description, String goal, int number, String result, String idTarget) {
         this.idStrategy = idStrategy;
         this.action = action;
         this.description = description;
         this.goal = goal;
         this.number = number;
         this.result = result;
-        this.strategyNumber += 1;
+        this.idTarget = idTarget;
+    }
+
+    public Strategy(String action, String description, String goal, int number, String result, String idTarget) {
+        this.action = action;
+        this.description = description;
+        this.goal = goal;
+        this.number = number;
+        this.result = result;
+        this.idTarget = idTarget;
+    }
+
+    public Strategy(String action, String description, String goal, String result) {
+        this.action = action;
+        this.description = description;
+        this.goal = goal;
+        this.result = result;
+    }
+
+    public Strategy(String action, String description, String goal, int number, String result) {
+        this.action = action;
+        this.description = description;
+        this.goal = goal;
+        this.number = number;
+        this.result = result;
     }
 
     public String getIdStrategy() {
@@ -68,13 +92,14 @@ public class Strategy{
         this.result = result;
     }
 
-    public int getStrategyNumber() {
-        return strategyNumber;
+    public String getIdTarget() {
+        return idTarget;
     }
 
-    public void setStrategyNumber(int strategyNumber) {
-        Strategy.strategyNumber = strategyNumber;
+    public void setIdTarget(String idTarget) {
+        this.idTarget = idTarget;
     }
+
 
     @Override
     public boolean equals(Object object) {
@@ -90,7 +115,13 @@ public class Strategy{
 
         Strategy strategy = (Strategy) object;
 
-        if(strategy.getIdStrategy().equals(this.idStrategy)){
+        if(strategy.getIdStrategy().equals(this.idStrategy) &&
+                strategy.getAction().equals(this.action) &&
+                strategy.getDescription().equals(this.description) &&
+                strategy.getGoal().equals(this.goal) &&
+                strategy.getNumber() == this.number &&
+                strategy.getResult().equals(this.result) &&
+                strategy.getIdTarget().equals(this.idTarget)){
             return true;
         }else{
             return false;
@@ -106,7 +137,7 @@ public class Strategy{
                 ", goal='" + goal + '\'' +
                 ", number=" + number +
                 ", result='" + result + '\'' +
-                ", strategyNumber= " + strategyNumber + '\'' +
+                ", idTarget='" + idTarget + '\'' +
                 '}';
     }
 }

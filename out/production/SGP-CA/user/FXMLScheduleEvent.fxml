@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="principalAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EBEBEB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLScheduleEventController">
+    <children>
+        <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #4CAF50;">
+            <children>
+                <Label layoutX="226.0" layoutY="11.0" prefHeight="31.0" prefWidth="148.0" text="Nuevo Evento" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="11.0">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <JFXButton buttonType="RAISED" layoutX="392.0" layoutY="348.0" onMouseClicked="#scheduleClicked" style="-fx-background-color: #3E60B6;" text="Agendar" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="487.0" layoutY="348.0" onMouseClicked="#exit" style="-fx-background-color: #3E60B6;" text="Cancelar" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <Label layoutX="28.0" layoutY="74.0" text="Titulo: ">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="165.0" text="Tipo de evento:">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="342.0" layoutY="74.0" text="Fecha:">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="342.0" layoutY="165.0" text="Hora: ">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="254.0" text="Lugar de evento:">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <JFXDatePicker fx:id="datePickerDate" defaultColor="#3e60b6" editable="false" layoutX="401.0" layoutY="62.0" prefHeight="31.0" prefWidth="173.0" />
+        <JFXTextField fx:id="textFieldTittle" layoutX="87.0" layoutY="64.0" prefHeight="31.0" prefWidth="227.0">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </JFXTextField>
+        <JFXTextField fx:id="textFieldEventType" layoutX="163.0" layoutY="154.0" prefHeight="31.0" prefWidth="162.0">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </JFXTextField>
+        <JFXTextField fx:id="textFieldPlace" layoutX="171.0" layoutY="243.0">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </JFXTextField>
+        <JFXTextField fx:id="textFieldHour" layoutX="393.0" layoutY="154.0">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </JFXTextField>
+    </children>
+</AnchorPane>

@@ -1,9 +1,7 @@
 package businesslogic;
 
 import dataaccess.Connector;
-import domain.Target;
 import domain.WorkPlan;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,197 +10,186 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class WorkPlanDAO implements IWorkPlanDAO{
+public class WorkPlanDAO implements IWorkPlanDAO {
 
-    private Connector connector = new Connector();
+    private final Connector CONNECTOR = new Connector();
 
-    public List<WorkPlan> displayAllWorkPlans(){
+    public List<WorkPlan> displayAllWorkPlans() throws BusinessLogicException{
 
-        String SQL_SELECT = "SELECT * FROM workplan";
+        final String SQL_SELECT = "SELECT * FROM workplan";
         Connection connection = null;
         WorkPlan workPlan;
         List<WorkPlan> workPlanList = new ArrayList<>();
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                String key = resultSet.getString("key");
-                Date starDate = resultSet.getDate("starDate");
+                String keyWorkPlan = resultSet.getString("keyWorkPlan");
+                Date startDate = resultSet.getDate("startDate");
                 Date endDate = resultSet.getDate("endDate");
+                String keyAcademicGroup = resultSet.getString("keyAcademicGroup");
+                String curpMember = resultSet.getString("curpMember");
 
-                workPlan = new WorkPlan(key, starDate, endDate);
+                workPlan = new WorkPlan(keyWorkPlan, startDate, endDate, keyAcademicGroup, curpMember);
                 workPlanList.add(workPlan);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
         return workPlanList;
     }
 
-    public int addWorkPlan(WorkPlan workPlan){
+    public boolean addWorkPlan(WorkPlan workPlan) throws BusinessLogicException{
 
-        String SQL_INSERT = "INSERT INTO workplan (`key`, `starDate`, `endDate`) VALUES (?, ?, ?)";
+        final String SQL_INSERT = "INSERT INTO workplan (`keyWorkPlan`, `startDate`, `endDate`, `keyAcademicGroup`, `curpMember`)" +
+                " VALUES (?, ?, ?, ?, ?)";
         Connection connection = null;
-        String startDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getStarDate()));
+        String startDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getStartDate()));
         String finishDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getEndDate()));
-        int numberOfRegisters=0;
+        boolean operationResult = false;
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_INSERT);
-            statement.setString(1, workPlan.getKey());
+            statement.setString(1, workPlan.getKeyWorkPlan());
             statement.setString(2, startDate);
             statement.setString(3, finishDate);
-            numberOfRegisters = statement.executeUpdate();
+            statement.setString(4, workPlan.getKeyAcademicGroup());
+            statement.setString(5, workPlan.getCurpMember());
+            statement.executeUpdate();
+            operationResult = true;
 
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return numberOfRegisters;
+        return operationResult;
     }
 
-    public int updateOneWorkPlan(WorkPlan workPlan){
+    public boolean updateWorkPlan(WorkPlan workPlan, String originalKeyWorkPlan) throws BusinessLogicException{
 
-        String SQL_UPDATE = "UPDATE workplan SET key=?, starDate=?, endDate=? WHERE key=?";
+        final String SQL_UPDATE = "UPDATE workplan SET keyWorkPlan=?, startDate=?, endDate=?, keyAcademicGroup=?, curpMember=? WHERE keyWorkPlan=?";
         Connection connection = null;
-        String startDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getStarDate()));
+        String startDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getStartDate()));
         String finishDate = (new SimpleDateFormat("yyyy-MM-dd").format(workPlan.getEndDate()));
-        int numberOfRegisters=0;
+        int numberOfUpdatedWorkPlans;
+        boolean operationResult = false;
+        final int OPERATION_OK = 0;
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE);
-            statement.setString(1, workPlan.getKey());
+            statement.setString(1, workPlan.getKeyWorkPlan());
             statement.setString(2, startDate);
             statement.setString(3, finishDate);
-            statement.setString(4, workPlan.getKey());
-            numberOfRegisters = statement.executeUpdate();
+            statement.setString(4, workPlan.getKeyAcademicGroup());
+            statement.setString(5, workPlan.getCurpMember());
+            statement.setString(6, originalKeyWorkPlan);
+            numberOfUpdatedWorkPlans = statement.executeUpdate();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+            if(numberOfUpdatedWorkPlans > OPERATION_OK){
+                operationResult = true;
+            }
+
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return numberOfRegisters;
+        return operationResult;
     }
 
-    public int deleteOneWorkPlan(String workPlanKey){
+    public boolean deleteWorkPlan(String keyWorkPlan) throws BusinessLogicException{
 
-        String SQL_DELETE = "DELETE FROM workplan WHERE key=?";
+        final String SQL_DELETE = "DELETE FROM workplan WHERE keyWorkPlan=?";
         Connection connection = null;
-        int numberOfRegisters=0;
+        int numberOfWorkPlansDeleted;
+        boolean operationResult = false;
+        final int OPERATION_OK = 0;
 
         try {
 
-            connection = connector.getConnection();
+            connection = CONNECTOR.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQL_DELETE);
-            statement.setString(1, workPlanKey);
-            numberOfRegisters = statement.executeUpdate();
+            statement.setString(1, keyWorkPlan);
+            numberOfWorkPlansDeleted = statement.executeUpdate();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+            if(numberOfWorkPlansDeleted>OPERATION_OK){
+                operationResult = true;
+            }
+
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         }finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
-        return numberOfRegisters;
+        return operationResult;
     }
 
-    public List<Target> displayAllWorkPlanTargets(String workPlanKey){
+    public WorkPlan foundWorkPlanByKeyWorkPlan(String keyWorkPlan) throws BusinessLogicException{
 
-        String SQL_SELECT = "SELECT * FROM `workplan-target` WHERE keyWorkPlan = ?";
-        Connection connection = null;
-        List<Target> workPlanTargetList = new ArrayList<>();
-
-        try {
-
-            connection = connector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
-            statement.setString(1, workPlanKey);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String idTarget = resultSet.getString("idTarget");
-                TargetDAO targetDAO = new TargetDAO();
-                workPlanTargetList.add(targetDAO.foundTargetById(idTarget));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        return workPlanTargetList;
-    }
-
-    public WorkPlan foundWorkPlanByKey(String workPlanKey){
-
-        String SQL_FOUNDWORKPLANBYID = "SELECT * FROM workplan WHERE workplan.key = ?";
+        final String SQL_SELECT = "SELECT * FROM workplan WHERE keyWorkPlan = ?";
         Connection connection = null;
         WorkPlan workPlan = null;
 
         try {
 
-            connection = connector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SQL_FOUNDWORKPLANBYID);
-            statement.setString(1, workPlanKey);
+            connection = CONNECTOR.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_SELECT);
+            statement.setString(1, keyWorkPlan);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
 
-                String key = resultSet.getString("key");
-                Date starDate = resultSet.getDate("starDate");
+                Date startDate = resultSet.getDate("startDate");
                 Date endDate = resultSet.getDate("endDate");
+                String keyAcademicGroup = resultSet.getString("keyAcademicGroup");
+                String curpMember = resultSet.getString("curpMember");
 
-                workPlan = new WorkPlan(key, starDate, endDate);
+                workPlan = new WorkPlan(keyWorkPlan, startDate, endDate, keyAcademicGroup, curpMember);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException sqlException) {
+            throw new BusinessLogicException("ConnectionException", sqlException);
         } finally {
             try {
-                connector.close(connection);
-            } catch (SQLException ex) {
-                Logger.getLogger(WorkPlanDAO.class.getName()).log(Level.SEVERE, null, ex);
+                CONNECTOR.closeConnection(connection);
+            } catch (SQLException sqlException) {
+                throw new BusinessLogicException("ConnectionException", sqlException);
             }
         }
 
         return workPlan;
     }
+
 
 }

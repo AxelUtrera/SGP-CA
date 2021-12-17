@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneMain" prefHeight="460.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMemberListController">
+    <children>
+        <Pane layoutX="-1.0" layoutY="38.0" prefHeight="51.0" prefWidth="625.0" style="-fx-background-color: #4CAF50;">
+            <children>
+                <Label layoutX="7.0" layoutY="7.0" text="Miembros del CA" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="12.0" layoutY="89.0" prefHeight="357.0" prefWidth="602.0" style="-fx-background-color: #dfffe3;">
+            <children>
+                <JFXButton fx:id="buttonRemove" buttonType="RAISED" layoutX="506.0" layoutY="33.0" onAction="#clickedRemoveMember" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Remover" textFill="WHITE" />
+                <JFXButton fx:id="buttonExit" buttonType="RAISED" layoutX="506.0" layoutY="90.0" onAction="#clickedExit" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Salir" textFill="WHITE" />
+                <TableView fx:id="tableViewMembers" layoutX="14.0" layoutY="20.0" prefHeight="294.0" prefWidth="476.0" stylesheets="@StyleTableView.css">
+                    <columns>
+                        <TableColumn fx:id="tableColumnName" prefWidth="154.33331298828125" text="Nombre" />
+                        <TableColumn fx:id="tableColumnEmail" minWidth="0.0" prefWidth="118.66668701171875" text="Correo electronico" />
+                        <TableColumn fx:id="tableColumnTelefono" minWidth="0.0" prefWidth="94.66668701171875" text="Telefono" />
+                        <TableColumn fx:id="tableColumnRole" prefWidth="107.33331298828125" text="Cargo AC" />
+                    </columns>
+                </TableView>
+                <JFXButton fx:id="buttonExit1" buttonType="RAISED" layoutX="496.0" layoutY="155.0" onMouseClicked="#displayAll" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #3E60B6;" text="Actualizar lista" textFill="WHITE" />
+                <JFXButton fx:id="buttonRegister" buttonType="RAISED" layoutX="396.0" layoutY="324.0" onAction="#clickedRegisterNewMember" prefHeight="25.0" prefWidth="199.0" style="-fx-background-color: #3E60B6;" text="Registrar nuevo miembro" textFill="WHITE" />
+            </children>
+        </Pane>
+        <AnchorPane layoutX="-1.0" prefHeight="41.0" prefWidth="625.0" style="-fx-background-color: #3E60B6;">
+            <children>
+                <Label layoutX="22.0" layoutY="10.0" text="SGP-CA" textFill="WHITE" AnchorPane.leftAnchor="22.0">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMemberInformation" layoutX="229.0" layoutY="12.0" prefHeight="17.0" prefWidth="346.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="189.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/LogoUser.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

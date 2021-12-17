@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneMain" prefHeight="561.0" prefWidth="793.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLHistoryEventController">
+    <children>
+        <AnchorPane prefHeight="42.0" prefWidth="798.0" style="-fx-background-color: #3E60B6;" AnchorPane.bottomAnchor="519.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="36.0" layoutY="14.0" text="SGP-CA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="343.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/LogoUser.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelMemberInformation" layoutX="379.0" layoutY="13.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+        <ImageView fitHeight="48.0" fitWidth="44.0" layoutX="721.0" layoutY="64.0" onMouseClicked="#clickedImageReturn" pickOnBounds="true" preserveRatio="true">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+         <image>
+            <Image url="@images/return.png" />
+         </image>
+        </ImageView>
+        <JFXButton buttonType="RAISED" layoutX="50.0" layoutY="70.0" onMouseClicked="#scheduleEvent" prefHeight="31.0" prefWidth="133.0" ripplerFill="#4caf50" style="-fx-background-color: #3E60B6;" text="Agendar evento" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></JFXButton>
+        <HBox layoutX="254.0" layoutY="66.0" prefHeight="44.0" prefWidth="449.0" AnchorPane.bottomAnchor="451.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="66.0">
+            <children>
+                <JFXTextField fx:id="searchTexttFile" focusColor="#4caf50" prefHeight="36.0" prefWidth="404.0" unFocusColor="#4caf50">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor></JFXTextField>
+                <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+               <image>
+                  <Image url="@images/search.png" />
+               </image>
+                </ImageView>
+            </children>
+        </HBox>
+      <AnchorPane layoutX="27.0" layoutY="131.0" prefHeight="430.0" prefWidth="739.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="131.0">
+         <children>
+            <TableView fx:id="tableViewEvents" layoutX="55.0" layoutY="37.0" prefHeight="374.0" prefWidth="677.0" stylesheets="@StyleTableView.css" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="37.0">
+              <columns>
+                <TableColumn fx:id="tableColumnType" prefWidth="125.0" text="Tipo" />
+                <TableColumn fx:id="tableColumnTitle" prefWidth="371.0" text="Tema" />
+                  <TableColumn fx:id="tableColumnDate" prefWidth="180.0" text="Fecha" />
+              </columns>
+            </TableView>
+            <ImageView fitHeight="37.0" fitWidth="66.0" layoutX="652.0" onMouseClicked="#refreshAcademicEventsTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imageRefresh/RefreshIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneConsultEvent" layoutY="48.0" prefHeight="504.0" prefWidth="764.0" style="-fx-background-color: #f5f7fa;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+         <children>
+            <AnchorPane layoutX="18.0" layoutY="83.0" prefHeight="356.0" prefWidth="757.0" style="-fx-background-color: WHITE;">
+               <children>
+                  <Label layoutX="28.0" layoutY="29.0" text="Título: " AnchorPane.bottomAnchor="306.0" AnchorPane.leftAnchor="28.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="109.0" text="Feha: " AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="109.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="textAreaDateEvent" editable="false" layoutX="135.0" layoutY="96.0" prefHeight="47.0" prefWidth="353.0" style="-fx-border-color: #d6d0d0;" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="96.0" />
+                  <Label layoutX="29.0" layoutY="191.0" text="Lugar: " AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="191.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="textAreaPlaceEvent" editable="false" layoutX="135.0" layoutY="176.0" prefHeight="47.0" prefWidth="353.0" style="-fx-border-color: #d6d0d0;" AnchorPane.leftAnchor="135.0" />
+                  <Label layoutX="29.0" layoutY="272.0" text="Tipo: " AnchorPane.leftAnchor="28.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="textAreaTypeEvent" editable="false" layoutX="135.0" layoutY="256.0" prefHeight="47.0" prefWidth="353.0" style="-fx-border-color: #d6d0d0;" AnchorPane.leftAnchor="135.0" />
+                  <JFXTextArea fx:id="textAreaTitleEvent" editable="false" layoutX="135.0" layoutY="16.0" prefHeight="47.0" prefWidth="353.0" style="-fx-border-color: #d6d0d0;" AnchorPane.bottomAnchor="293.0" AnchorPane.leftAnchor="135.0" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="26.0" layoutY="12.0" text="Evento">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="buttonExitEvent" buttonType="RAISED" layoutX="17.0" layoutY="458.0" onAction="#clickedExitConsultEvent" prefHeight="37.0" prefWidth="96.0" ripplerFill="#4caf50" style="-fx-background-color: #3E60B6;" text="Salir" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="buttonEventConstancies" buttonType="RAISED" layoutX="603.0" layoutY="17.0" onAction="#clickedConsultConstancies" onMouseClicked="#scheduleEvent" prefHeight="37.0" prefWidth="153.0" ripplerFill="#4caf50" style="-fx-background-color: #3E60B6;" text="Ver constancias" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

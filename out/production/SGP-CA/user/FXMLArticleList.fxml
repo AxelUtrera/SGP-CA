@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="443.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLArticleListController">
+    <children>
+        <Pane layoutY="37.0" prefHeight="51.0" prefWidth="617.0" style="-fx-background-color: #4CAF50;">
+            <children>
+                <Label layoutX="7.0" layoutY="7.0" text="Articulos" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="14.0" layoutY="88.0" prefHeight="336.0" prefWidth="595.0" style="-fx-background-color: #dfffe3;">
+            <children>
+                <JFXButton fx:id="buttonRemove" buttonType="RAISED" layoutX="499.0" layoutY="26.0" onAction="#clickedRemove" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Eliminar" textFill="WHITE" />
+                <JFXButton fx:id="buttonExit" buttonType="RAISED" layoutX="14.0" layoutY="303.0" onAction="#clickedExit" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Salir" textFill="WHITE" />
+                <TableView fx:id="tableViewEvidence" layoutX="10.0" layoutY="14.0" prefHeight="279.0" prefWidth="476.0">
+                    <columns>
+                        <TableColumn fx:id="tableColumnName" prefWidth="475.0" text="Titulo" />
+                    </columns>
+                </TableView>
+                <JFXButton fx:id="buttonConsultar" buttonType="RAISED" layoutX="499.0" layoutY="104.0" onAction="#clickedConsult" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Consultar" textFill="WHITE" />
+                <JFXButton fx:id="buttonEdit" buttonType="RAISED" layoutX="499.0" layoutY="64.0" onAction="#clickedEdit" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Editar" textFill="WHITE" />
+                <JFXButton fx:id="buttonUpdate" buttonType="RAISED" layoutX="499.0" layoutY="231.0" onAction="#updateList" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #3E60B6;" text="Actualizar" textFill="WHITE" />
+                <JFXButton fx:id="buttonRegister" buttonType="RAISED" layoutX="452.0" layoutY="303.0" onAction="#newRegister" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #3E60B6;" text="Registrar nuevo" textFill="WHITE" />
+            </children>
+        </Pane>
+        <AnchorPane prefHeight="41.0" prefWidth="617.0" style="-fx-background-color: #3E60B6;">
+            <children>
+                <Label layoutX="14.0" layoutY="10.0" text="SGP-CA" textFill="WHITE" AnchorPane.leftAnchor="14.0">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMemberInformation" layoutX="241.0" layoutY="12.0" prefHeight="17.0" prefWidth="354.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="202.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/LogoUser.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

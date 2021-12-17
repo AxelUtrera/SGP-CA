@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="scenePane" prefHeight="375.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLConsultArticleController">
+    <children>
+        <JFXButton fx:id="buttonExit" buttonType="RAISED" layoutX="14.0" layoutY="340.0" onMouseClicked="#clickExit" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #4CAF50;" text="Salir" textFill="#ebebeb" />
+        <Pane layoutX="34.0" layoutY="57.0" prefHeight="283.0" prefWidth="542.0" style="-fx-background-color: #d6e5f6;">
+            <children>
+                <TextArea fx:id="textAreaDescription" layoutX="25.0" layoutY="19.0" prefHeight="246.0" prefWidth="492.0" />
+            </children>
+        </Pane>
+        <AnchorPane layoutX="-8.0" prefHeight="41.0" prefWidth="617.0" style="-fx-background-color: #3E60B6;">
+            <children>
+                <Label fx:id="labelMemberInformation" layoutX="295.0" layoutY="12.0" prefHeight="17.0" prefWidth="322.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="231.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/LogoUser.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="14.0" layoutY="3.0" text="Artículo" textFill="#d6e5f6">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

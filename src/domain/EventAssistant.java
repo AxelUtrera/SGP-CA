@@ -2,20 +2,20 @@ package domain;
 
 public class EventAssistant {
 
-    private String eMail;
+    private String email;
     private String name;
 
-    public EventAssistant(String eMail, String name) {
-        this.eMail = eMail;
+    public EventAssistant(String email, String name) {
+        this.email = email;
         this.name = name;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -27,9 +27,31 @@ public class EventAssistant {
     }
 
     @Override
+    public boolean equals(Object object) {
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(object.getClass() != EventAssistant.class){
+            return false;
+        }
+
+        EventAssistant eventAssistant = (EventAssistant) object;
+
+        if(eventAssistant.getEmail().equals(this.email) &&
+                eventAssistant.getName().equals(this.name)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         return "EventAssistant{" +
-                "eMail='" + eMail + '\'' +
+                "eMail='" + email + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

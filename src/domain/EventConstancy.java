@@ -4,16 +4,23 @@ public class EventConstancy {
 
     private String idEventConstancy;
     private String recognitionType;
-    private String reglamentoryNotes;
     private String description;
-    private String assistantEmail;
+    private String emailAssistant;
+    private String idAcademicEvent;
 
-    public EventConstancy(String idEventConstancy, String recognitionType, String reglamentoryNotes, String description, String assistantEmail) {
+    public EventConstancy(String idEventConstancy, String recognitionType, String description, String assistantEmail, String idAcademicEvent) {
         this.idEventConstancy = idEventConstancy;
         this.recognitionType = recognitionType;
-        this.reglamentoryNotes = reglamentoryNotes;
         this.description = description;
-        this.assistantEmail = assistantEmail;
+        this.emailAssistant = assistantEmail;
+        this.idAcademicEvent = idAcademicEvent;
+    }
+
+    public EventConstancy(String recognitionType, String description, String assistantEmail, String idAcademicEvent) {
+        this.recognitionType = recognitionType;
+        this.description = description;
+        this.emailAssistant = assistantEmail;
+        this.idAcademicEvent = idAcademicEvent;
     }
 
     public String getIdEventConstancy() {
@@ -32,14 +39,6 @@ public class EventConstancy {
         this.recognitionType = recognitionType;
     }
 
-    public String getReglamentoryNotes() {
-        return reglamentoryNotes;
-    }
-
-    public void setReglamentoryNotes(String reglamentoryNotes) {
-        this.reglamentoryNotes = reglamentoryNotes;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -48,12 +47,45 @@ public class EventConstancy {
         this.description = description;
     }
 
-    public String getAssistantEmail() {
-        return assistantEmail;
+    public String getEmailAssistant() {
+        return emailAssistant;
     }
 
-    public void setAssistantEmail(String assistantEmail) {
-        this.assistantEmail = assistantEmail;
+    public void setEmailAssistant(String emailAssistant) {
+        this.emailAssistant = emailAssistant;
+    }
+
+    public String getIdAcademicEvent() {
+        return idAcademicEvent;
+    }
+
+    public void setIdAcademicEvent(String idAcademicEvent) {
+        this.idAcademicEvent = idAcademicEvent;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if(this == object){
+            return true;
+        }
+        if(object == null){
+            return false;
+        }
+        if(object.getClass() != EventConstancy.class){
+            return false;
+        }
+
+        EventConstancy eventConstancy = (EventConstancy) object;
+
+        if(eventConstancy.getIdEventConstancy().equals(this.idEventConstancy) &&
+                eventConstancy.getRecognitionType().equals(this.recognitionType) &&
+                eventConstancy.getDescription().equals(this.description) &&
+                eventConstancy.getEmailAssistant().equals(this.emailAssistant) &&
+                eventConstancy.getIdAcademicEvent().equals(this.idAcademicEvent)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -61,9 +93,9 @@ public class EventConstancy {
         return "EventConstancy{" +
                 "idEventConstancy='" + idEventConstancy + '\'' +
                 ", recognitionType='" + recognitionType + '\'' +
-                ", reglamentoryNotes='" + reglamentoryNotes + '\'' +
                 ", description='" + description + '\'' +
-                ", assistantEmail='" + assistantEmail + '\'' +
+                ", emailAssistant='" + emailAssistant + '\'' +
+                ", idAcademicEvent='" + idAcademicEvent + '\'' +
                 '}';
     }
 }

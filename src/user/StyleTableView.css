@@ -1,0 +1,41 @@
+.table-view{
+    -fx-background-radius: 30;
+    -fx-background-color: #f5f7fa;
+}
+
+.table-view .column-header-background {
+    -fx-background-radius: 60;
+    -fx-background-color: #ebeef2;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+    -fx-effect: dropshadow(two-pass-box, #d8dff0, 15, 0.0, 0.1, 3);
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color: transparent;
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+}
+
+.table-view:row-selection .table-row-cell:filled:selected {
+    -fx-background-color: #abcbed;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-cell {
+    -fx-border-color: #e6e8eb;
+    -fx-font: 13px "Segoe UI";
+    -fx-border-insets: 0;
+}
+
+.table-view .cell{
+-fx-wrap-text: true;
+    -fx-cell-size: 40px;
+}
+
+

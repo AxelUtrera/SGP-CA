@@ -2,9 +2,9 @@ package dataaccess;
 
 public class Propertie{
 
-    String URL;
-    String USER;
-    String PASSWORD;
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public Propertie(String URL, String USER, String PASSWORD) {
         this.URL = URL;
@@ -38,10 +38,21 @@ public class Propertie{
 
         Propertie propertie = (Propertie) object;
 
-        if(propertie.getURL().equals(this.getURL()) && (propertie.getUSER().equals(this.getUSER())) && (propertie.getPASSWORD().equals(this.getPASSWORD()))){
+        if(propertie.getURL().equals(this.getURL()) &&
+                (propertie.getUSER().equals(this.getUSER())) &&
+                (propertie.getPASSWORD().equals(this.getPASSWORD()))){
             return true;
         }else{
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Propertie{" +
+                "URL='" + URL + '\'' +
+                ", USER='" + USER + '\'' +
+                ", PASSWORD='" + PASSWORD + '\'' +
+                '}';
     }
 }

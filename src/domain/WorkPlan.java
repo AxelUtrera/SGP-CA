@@ -4,30 +4,41 @@ import java.util.Date;
 
 public class WorkPlan {
 
-    private String key;
-    private Date starDate;
+    private String keyWorkPlan;
+    private Date startDate;
     private Date endDate;
+    private String curpMember;
+    private String keyAcademicGroup;
 
-    public WorkPlan(String key, Date starDate, Date endDate) {
-        this.key = key;
-        this.starDate = starDate;
+    public WorkPlan(String keyWorkPlan, Date startDate, Date endDate, String keyAcademicGroup, String curpMember) {
+        this.keyWorkPlan = keyWorkPlan;
+        this.startDate = startDate;
         this.endDate = endDate;
+        this.keyAcademicGroup = keyAcademicGroup;
+        this.curpMember = curpMember;
     }
 
-    public String getKey() {
-        return key;
+    public WorkPlan(Date startDate, Date endDate, String keyAcademicGroup, String curpMember) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.keyAcademicGroup = keyAcademicGroup;
+        this.curpMember = curpMember;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public String getKeyWorkPlan() {
+        return keyWorkPlan;
     }
 
-    public Date getStarDate() {
-        return starDate;
+    public void setKeyWorkPlan(String keyWorkPlan) {
+        this.keyWorkPlan = keyWorkPlan;
     }
 
-    public void setStarDate(Date starDate) {
-        this.starDate = starDate;
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
@@ -38,6 +49,22 @@ public class WorkPlan {
         this.endDate = endDate;
     }
 
+    public String getKeyAcademicGroup() {
+        return keyAcademicGroup;
+    }
+
+    public void setKeyAcademicGroup(String keyAcademicGroup) {
+        this.keyAcademicGroup = keyAcademicGroup;
+    }
+
+    public String getCurpMember() {
+        return curpMember;
+    }
+
+    public void setCurpMember(String curpMember) {
+        this.curpMember = curpMember;
+    }
+
     @Override
     public boolean equals(Object object) {
         if(this == object){
@@ -46,13 +73,17 @@ public class WorkPlan {
         if(object == null){
             return false;
         }
-        if(object.getClass() != Strategy.class){
+        if(object.getClass() != WorkPlan.class){
             return false;
         }
 
         WorkPlan workPlan = (WorkPlan) object;
 
-        if(workPlan.getKey().equals(this.getKey())){
+        if(workPlan.getKeyWorkPlan().equals(this.keyWorkPlan) &&
+                workPlan.getStartDate().equals(this.startDate) &&
+                workPlan.getEndDate().equals(this.endDate) &&
+                workPlan.getKeyAcademicGroup().equals(this.keyAcademicGroup) &&
+                workPlan.getCurpMember().equals(this.curpMember)){
             return true;
         }else{
             return false;
@@ -62,9 +93,11 @@ public class WorkPlan {
     @Override
     public String toString() {
         return "WorkPlan{" +
-                "key='" + key + '\'' +
-                ", starDate='" + starDate + '\'' +
-                ", endDate='" + endDate + '\'' +
+                "keyWorkPlan='" + keyWorkPlan + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", curpMember='" + curpMember + '\'' +
+                ", keyAcademicGroup='" + keyAcademicGroup + '\'' +
                 '}';
     }
 }

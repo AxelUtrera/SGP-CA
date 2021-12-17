@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLInvestigationProjectController">
+    <children>
+        <Pane prefHeight="44.0" prefWidth="600.0" style="-fx-background-color: #3E60B6;">
+            <children>
+                <Label layoutX="7.0" layoutY="5.0" prefHeight="35.0" prefWidth="306.0" text="Nuevo proyecto de investigación" textFill="#d6e5f6">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMemberInformation" layoutX="300.0" layoutY="14.0" prefHeight="17.0" prefWidth="306.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="257.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/LogoUser.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <JFXButton fx:id="buttonCancel" buttonType="RAISED" layoutX="14.0" layoutY="361.0" onMouseClicked="#clickCancel" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #4CAF50;" text="Cancelar" textFill="#ebebeb" />
+        <Pane layoutX="29.0" layoutY="71.0" prefHeight="283.0" prefWidth="542.0" style="-fx-background-color: #d6e5f6;">
+            <children>
+                <Label layoutX="88.0" layoutY="24.0" prefHeight="20.0" prefWidth="38.0" text="Título">
+                    <font>
+                        <Font name="Arial Narrow" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="54.0" layoutY="169.0" prefHeight="20.0" prefWidth="81.0" text="Descripción">
+                    <font>
+                        <Font name="Arial Narrow" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="48.0" layoutY="121.0" prefHeight="20.0" prefWidth="81.0" text="Fecha de fin">
+                    <font>
+                        <Font name="Arial Narrow" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="31.0" layoutY="68.0" prefHeight="20.0" prefWidth="97.0" text="Fecha de inicio">
+                    <font>
+                        <Font name="Arial Narrow" size="17.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="textFieldTitulo" layoutX="150.0" layoutY="22.0" prefHeight="25.0" prefWidth="360.0" />
+                <JFXDatePicker fx:id="datePickerEndDate" editable="false" layoutX="150.0" layoutY="119.0" prefHeight="25.0" prefWidth="393.0" />
+                <JFXDatePicker fx:id="datePickerStartDate" editable="false" layoutX="150.0" layoutY="66.0" prefHeight="25.0" prefWidth="393.0" />
+                <JFXTextArea fx:id="textAreaDescription" layoutX="150.0" layoutY="159.0" prefHeight="102.0" prefWidth="381.0" />
+            </children>
+        </Pane>
+        <JFXButton fx:id="buttonRegister" buttonType="RAISED" layoutX="489.0" layoutY="361.0" onMouseClicked="#register" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #4CAF50;" text="Registrar" textFill="#ebebeb" />
+    </children>
+</AnchorPane>

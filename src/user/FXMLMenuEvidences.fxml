@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLMenuEvidencesController">
+    <children>
+        <Pane prefHeight="121.0" prefWidth="392.0" style="-fx-background-color: #3E60B6;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="117.0" layoutY="47.0" text="Evidencias" textFill="WHITE">
+                    <font>
+                        <Font name="Barlow Condensed ExtraLight" size="43.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMemberInformation" layoutX="54.0" layoutY="22.0" prefHeight="17.0" prefWidth="322.0" text="Cortés Verdín María Karen[SASO750909HDFNNS05]" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/LogoUser.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <JFXButton layoutX="106.0" layoutY="145.0" onAction="#clickedBook" prefHeight="38.0" prefWidth="195.0" style="-fx-background-color: #4CAF50;" text="Libros" textFill="WHITE">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </JFXButton>
+        <JFXButton fx:id="buttonExit" layoutX="14.0" layoutY="404.0" onAction="#clickedExit" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4CAF50;" text="Salir" textFill="WHITE">
+            <font>
+                <Font size="11.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="106.0" layoutY="203.0" onAction="#clickedArticle" prefHeight="38.0" prefWidth="195.0" style="-fx-background-color: #4CAF50;" text="Articulos" textFill="WHITE">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="106.0" layoutY="267.0" onAction="#clickedReceptionWord" style="-fx-background-color: #4CAF50;" text="Trabajos recepcionales" textFill="WHITE">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="106.0" layoutY="330.0" onAction="#clickedPrototype" prefHeight="38.0" prefWidth="195.0" style="-fx-background-color: #4CAF50;" text="Prototipos" textFill="WHITE">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </JFXButton>
+    </children>
+</AnchorPane>
